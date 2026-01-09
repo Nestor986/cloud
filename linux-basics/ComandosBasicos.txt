@@ -1,0 +1,47 @@
+Navegacion
+pwd -> ruta actual
+ls  -> ver contenido del directorio actual
+cd  -> movers
+
+Creaacion
+mkdir -> crear carpeta
+mkdir -p home/main/proyecto -> crea toda la ruta si no existe
+touch archivo.txt -> solo crea o actualiza fecha
+cat archivo.txt -> ve todo el contenido
+nano archivo.txt -> crea el archivo y permite modificarlo
+
+Copiar, mover y borrar
+cp origen destino -> copia 
+mv archivo.txt carpeta/ -> mueve el archivo a la carpeta
+rm archiv.txt -> borra el archivo
+rm -r carpeta/ -> borra carpeta y contenido de la misma
+
+Busqueda
+find /ruta -name archivo.txt -> ejemplo: find /var/log -name "*.log"
+
+Permisos
+3 entidades: usuario(owner), grupo, otros
+
+permisos: leer r 4, escribir w 2, ejecutar x 1
+
+ejemplo -> chmod 755 script.sh
+
+Ejecutar archivos
+./script.sh -> en caso de ver permission denied falta permiso x o ejecutar
+
+Cambiar dueño
+chown usuario archivo
+chown usuario:grupo archivo
+
+ejemplo ->  chown andre:devs app.log
+
+Usuarios y Grupos
+
+ver usuario actual -> whoami id
+crear usuarios -> 
+sudo useradd andre
+sudo passwd andre
+
+Crear grupo -> sudo grupoadd devs
+agregar usuario a grupo -> sudo usermod -aG devs andre
+
