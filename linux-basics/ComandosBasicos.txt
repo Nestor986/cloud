@@ -48,11 +48,15 @@ sudo passwd andre
 userdel juan
 userdel -r juan   # borra home
 
+cat /etc/passwd -> ver usuarios existentes 
+sudo chsh -s /bin/bash juan -> cambia el shell de manera segura
+
 Crear grupo -> sudo grupoadd devs
 borrar grupo -> groupdel developers
 agregar usuario a grupo -> sudo usermod -aG devs andre
 sin -a sacarías al usuario de otros grupos
 cambiar grupo primario -> usermod -g developers juan
+cat /etc/group -> ver grupos existentes
 
 whoami       # usuario actual
 who          # usuarios conectados
@@ -60,4 +64,7 @@ w            # sesiones activas
 last         # historial de logins
 su - usuario # cambiar usuario
 sudo comando # ejecutar como root
+
+cat /etc/shells => ver shells permitidos
+
 
