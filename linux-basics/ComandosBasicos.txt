@@ -37,11 +37,27 @@ ejemplo ->  chown andre:devs app.log
 
 Usuarios y Grupos
 
+id usuario -> para saber toda la informacion del usuario
+
+
 ver usuario actual -> whoami id
 crear usuarios -> 
 sudo useradd andre
 sudo passwd andre
 
+userdel juan
+userdel -r juan   # borra home
+
 Crear grupo -> sudo grupoadd devs
+borrar grupo -> groupdel developers
 agregar usuario a grupo -> sudo usermod -aG devs andre
+sin -a sacarías al usuario de otros grupos
+cambiar grupo primario -> usermod -g developers juan
+
+whoami       # usuario actual
+who          # usuarios conectados
+w            # sesiones activas
+last         # historial de logins
+su - usuario # cambiar usuario
+sudo comando # ejecutar como root
 
