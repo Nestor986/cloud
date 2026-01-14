@@ -9,6 +9,8 @@ mkdir -p home/main/proyecto -> crea toda la ruta si no existe
 touch archivo.txt -> solo crea o actualiza fecha
 cat archivo.txt -> ve todo el contenido
 nano archivo.txt -> crea el archivo y permite modificarlo
+tail -n 20 /var/log/nginx/error.log -> ultimas 20 lineas
+tail -f /var/log/nginx/error.log ->ver en tiempo real
 
 Copiar, mover y borrar
 cp origen destino -> copia 
