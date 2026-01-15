@@ -7,6 +7,22 @@ Ps aux | grep nombreProceso -> busca un proceso
 TOP -> table of processes 
 Top -> trae informacion del numero de procesos 
 
+P → ordenar por CPU
+
+M → ordenar por memoria
+
+k → matar proceso
+
+q → salir
+
+
+Kill
+kill PID -> Envía señal SIGTERM (15) → apagado limpio
+
+kill -9 PID-> SIGKILL (9) → fuerza bruta`  
+
+
+
 Grep
 Grep -i ->case insensitive, busca sin importar mayúsculas o minúsculas  
 
@@ -54,3 +70,4 @@ journalctl -u docker
 journalctl -u mysql
 journalctl -u ssh -f
 -f = follow (tiempo real)
+sustituto de tail journalctl -u ssh -n 20
