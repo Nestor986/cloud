@@ -20,11 +20,11 @@ La F es para que siga corriendo el comando y no solo muestre las ultimas lineas
 
 Archivo	Qué guarda
 syslog / messages	   Eventos generales del sistema
-auth.log	                   Logins, sudo, ssh
-kern.log	                   Mensajes del kernel
-dmesg			   Arranque del sistema
-nginx/			   Logs de Nginx
-apache2/		   Logs de Apache
+auth.log	           Logins, sudo, ssh
+kern.log	           Mensajes del kernel
+dmesg			           Arranque del sistema
+nginx/			         Logs de Nginx
+apache2/		         Logs de Apache
 
 Estados de los procesos:
 R running/runnable esta usando cpu o esta listo y esperando turno
@@ -32,3 +32,25 @@ S sleeping, esperando un evento
 D uninterruptible sleep, no responde a kill -9 
 T stopped/traced, proceso detenido
 Z zombie, proceso terminado pero no limpiado por parte del padre 
+
+
+Systemctl
+systemctl status ssh -> te da el status del ssh
+
+Acción	     Comando
+Estado SSH-> systemctl status ssh
+Iniciar->    systemctl start ssh
+Reiniciar->  systemctl restart ssh
+Recargar->   systemctl reload ssh
+Logs->       journalctl -u ssh
+Arranque->   systemctl enable ssh
+
+
+
+
+journalctl -u ssh -> ver logs
+journalctl -u nginx
+journalctl -u docker
+journalctl -u mysql
+journalctl -u ssh -f
+-f = follow (tiempo real)
