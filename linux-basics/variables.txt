@@ -1,0 +1,81 @@
+nombre="Juan"
+edad=20
+Sin espacios alrededor del =
+
+Variables especiales
+
+$0 → nombre del script
+
+$1, $2... → argumentos
+
+$# → número de argumentos
+
+$? → código de salida del último comando
+
+$$ → PID del script
+
+Condicionales if
+if [ condicion ]; then
+    comandos
+elif [ otra_condicion ]; then
+    comandos
+else
+    comandos
+fi
+
+Operadores para numeros:
+
+-eq igual
+-ne distinto
+-gt mayor
+-lt menor
+-ge mayor o igual
+-le menor o igual
+
+Archivos:
+
+-f archivo
+-d directorio
+-x ejecutable
+
+Strings  
+
+-z devuelve verdadero si la cadena está vacía (longitud 0).  
+-n → verdadero si tiene contenido  
+= → son iguales
+!= → son diferentes  
+
+Ejemplos:
+if [ $edad -ge 18 ]; then
+    echo "Mayor de edad"
+fi
+
+if [ -f archivo.txt ]; then
+    echo "Existe"
+fi
+
+Loops:
+for i in 1 2 3; do
+    echo $i
+done
+
+Con rango:
+for i in {1..5}; do
+  echo $i
+done
+
+Con archivos:
+for archivo in *.txt; do
+  echo "$archivo"
+done  
+
+contador=1
+while [ $contador -le 5 ]; do
+    echo $contador
+    contador=$((contador+1))
+done
+  
+until [ $contador -gt 5 ]; do
+    echo $contador
+    contador=$((contador+1))
+done
