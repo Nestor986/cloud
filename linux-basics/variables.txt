@@ -37,6 +37,10 @@ Archivos:
 -f archivo
 -d directorio
 -x ejecutable
+-e Existe (archivo, directorio o enlace)
+-r	Existe y tiene permiso de lectura
+-w	Existe y tiene permiso de escritura
+-x	Existe y es ejecutable
 
 Strings  
 
@@ -79,3 +83,28 @@ until [ $contador -gt 5 ]; do
     echo $contador
     contador=$((contador+1))
 done
+-----------------------------------------------------------------------------------------------
+Servicios con IF
+
+if systemctl is-active --quiet ssh; then
+    echo "Activo"
+else
+    echo "No activo"
+fi
+
+--quiet es para que en la salida del script no se repita el mensaje de si esta activo o no
+
+
+echo "Ingrese el nombre del servicio"
+read servicio
+
+if systemctl list-unit-files | grep -q "^$servicio"; then
+    if systemctl is-active --quiet "$servicio"; then
+        echo "El servicio está activo"
+    else
+        echo "El servicio existe pero no está activo"
+    fi
+else
+    echo "El servicio no existe"
+fi
+el ^ es para que busque el nombre solo al inicio del servicio, para que sea una coincidencia mas exacta
