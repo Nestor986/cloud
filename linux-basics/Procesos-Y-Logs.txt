@@ -26,6 +26,71 @@ kill -9 PID-> SIGKILL (9) → fuerza bruta`
 Grep
 Grep -i ->case insensitive, busca sin importar mayúsculas o minúsculas  
 
+Revisar la memoria y almacenamiento
+lsblk → lista de dispositivos y tamaño
+df -h revisar el almacenamiento
+
+
+free -h revisar memoria
+
+Columnas importantes
+
+used → memoria usada por programas
+
+free → memoria libre
+
+available → memoria realmente disponible para nuevos procesos (mejor indicador que free)
+
+Script para la memoria ram:
+umbral=1000  # en MB
+libre=$(free -m | awk 'NR==2 {print $7}')  # columna 'available' y la -m es para mmostrar memoria en MB
+
+if [ $libre -lt $umbral ]; then
+    echo "Atención: poca memoria disponible ($libre MB)"
+else
+    echo "Memoria suficiente: $libre MB"
+fi
+
+Script para uso del disco:
+uso=$(df -h / | awk 'NR==2 {print $5}')
+echo "El uso del disco en / es $uso"
+
+du → “disk usage” (uso de carpetas y archivos)
+du -sh /home/usuario
+
+-s → resumen (no lista todos los subdirectorios)
+-h → human readable
+
+Alerta por disco lleno:
+
+umbral=80
+uso=$(df / | awk 'NR==2 {gsub("%","",$5); print $5}')
+
+if [ $uso -ge $umbral ]; then
+    echo "Cuidado: la partición / está al $uso% de uso"
+else
+    echo "Espacio suficiente: $uso%"
+fi
+
+gsub("%","",$5)
+
+gsub = global substitute
+
+Reemplaza todos los % en la columna $5 por nada ("").
+
+$5 = columna Use%, que normalmente tiene un % al final, por ejemplo 42%
+
+Resultado: solo 42 (número puro).
+
+df / → mira solo la partición raíz (/).
+
+awk 'NR==2 {gsub("%","",$5); print $5}' → extrae el porcentaje usado, sin %.
+
+uso=$(...) → guarda ese valor en una variable para usarlo en tu script.
+
+La diagonal / no es un “comodín”, es literal: significa la partición raíz.
+Si quisieras revisar otra carpeta, podrías poner /home o /var en lugar de /.
+
 Logs
 var/log
 
