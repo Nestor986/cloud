@@ -1,0 +1,90 @@
+Un cron job es una tarea que se ejecuta automáticamente en un sistema Unix/Linux en un momento específico o de forma periódica.
+
+Cron → es el servicio/daemon que se ejecuta en segundo plano.
+
+Job → es la tarea o comando que quieres ejecutar.
+Ejemplos:
+
+Hacer un backup todos los días a las 2:00 AM
+
+Ejecutar un script cada 5 minutos
+
+Limpiar archivos temporales una vez a la semana
+
+Enviar correos automáticos
+
+¿Cómo funciona cron internamente?
+
+El servicio cron está corriendo en el sistema.
+
+Revisa cada minuto los archivos de configuración (crontabs).
+
+Si la fecha y hora coinciden con una regla, ejecuta el comando.
+
+Ejecuta el comando con permisos del usuario dueño del cron.
+------------------------------------------------------------
+Un crontab (cron table) es un archivo que contiene la lista de tareas programadas.
+
+Cada usuario tiene su propio crontab.
+
+Comandos importantes
+crontab -e   # Editar el crontab del usuario
+crontab -l   # Listar cron jobs
+crontab -r   # Borrar todos los cron jobs
+
+┌──────── minuto (0 - 59)
+│ ┌────── hora (0 - 23)
+│ │ ┌──── día del mes (1 - 31)
+│ │ │ ┌── mes (1 - 12)
+│ │ │ │ ┌─ día de la semana (0 - 7) (domingo = 0 o 7)
+│ │ │ │ │
+│ │ │ │ │
+* * * * * comando
+
+ejemplo:
+30 2 * * * /home/user/backup.sh
+
+5.3 Listas (coma)
+0 9,18 * * * comando
+A las 9:00 y a las 18:00
+
+5.4 Rangos (guion)
+0 9-17 * * 1-5 comando
+Cada hora entre 9 y 17, de lunes a viernes
+
+Variables de entorno en cron
+/usr/bin/php /ruta/script.php
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+Guardar salida en un archivo
+* * * * * comando >> /var/log/cron.log 2>&1
+>> → agrega
+2>&1 → redirige errores a la salida estándar
+
+Cron del sistema
+
+Archivos:
+
+/etc/crontab
+
+/etc/cron.d/
+
+/etc/cron.hourly/
+
+/etc/cron.daily/
+
+/etc/cron.weekly/
+
+/etc/cron.monthly/
+
+Ejemplos:
+Backup diario
+0 2 * * * tar -czf /backup/backup.tar.gz /home/user
+
+Reiniciar un servicio
+0 4 * * 0 systemctl restart nginx
+
+Limpiar archivos temporales
+0 3 * * * find /tmp -type f -mtime +7 -delete
