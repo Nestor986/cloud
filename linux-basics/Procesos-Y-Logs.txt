@@ -136,3 +136,41 @@ journalctl -u mysql
 journalctl -u ssh -f
 -f = follow (tiempo real)
 sustituto de tail journalctl -u ssh -n 20
+
+
+Logs
+
+SERVICIO="ssh"
+LOG="/var/log/check_service.log"
+FECHA=$(date "+%Y-%m-%d %H:%M:%S")
+
+if systemctl is-active --quiet "$SERVICIO"; then
+    echo "$FECHA - $SERVICIO está activo" >> "$LOG"
+else
+    echo "$FECHA - ERROR: $SERVICIO NO está activo" >> "$LOG"
+fi
+
+>> redirige la salida estándar (stdout) de un comando y la AÑADE a un archivo.
+
+Ejemplo:
+
+echo "Hola" >> archivo.txt
+
+
+ Lo que normalmente verías en pantalla con echo
+ se escribe al final de archivo.txt
+
+ Diferencia clave: > vs >>
+>
+echo "Hola" > archivo.txt
+Borra el contenido anterior
+
+
+>>
+echo "Hola" >> archivo.txt
+
+Conserva lo que ya existe
+
+Añade al final (append)
+
+Para logs, SIEMPRE >> 
