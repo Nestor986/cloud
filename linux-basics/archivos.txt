@@ -1,0 +1,27 @@
+🔹 1. Tamaño del archivo
+stat -c %s archivo.txt
+
+➡️ Muestra el tamaño en bytes.
+
+🔹 2. Permisos (en formato simbólico)
+stat -c %A archivo.txt
+
+➡️ Ejemplo de salida: -rw-r--r--
+
+🔹 3. Dueño del archivo
+stat -c %U archivo.txt
+
+➡️ Muestra el nombre del usuario propietario.
+
+🔹 4. Grupo del archivo
+stat -c %G archivo.txt
+
+➡️ Muestra el grupo propietario.
+
+🔹 5. Fecha de última modificación
+stat -c %y archivo.txt
+
+➡️ Ejemplo: 2026-01-24 14:32:10.000000000 -0600
+
+🔹 6. Todo junto (formato personalizado)
+stat -c "Archivo: %n | Tamaño: %s bytes | Permisos: %A | Dueño: %U | Fecha: %y" archivo.txt
