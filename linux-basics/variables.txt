@@ -33,7 +33,7 @@ Operadores para numeros:
 -le menor o igual
 
 Archivos:
-
+-s si no esta vacio
 -f archivo
 -d directorio
 -x ejecutable
