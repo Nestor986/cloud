@@ -1,0 +1,11 @@
+Pasos generales para instalar Nginx:
+Conéctate a tu instancia mediante SSH.
+Actualiza el sistema para asegurar que los paquetes estén al día:
+Amazon Linux/RHEL: sudo yum update -y
+Ubuntu: sudo apt update && sudo apt upgrade -y
+Instala Nginx:
+Amazon Linux/RHEL: sudo yum install nginx -y
+Ubuntu: sudo apt install nginx -y
+Inicia y habilita Nginx para que arranque con el servidor:
+sudo systemctl start nginx
+sudo systemctl enable nginx
