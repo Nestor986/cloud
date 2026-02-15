@@ -97,6 +97,9 @@ var/log
 tail -f /var/log/nginx/error.log
 grep -i error archivo.log
 
+☐	Busca archivos que contengan una palabra específica
+grep -ri "palabra" /ruta/del/directorio
+
 La F es para que siga corriendo el comando y no solo muestre las ultimas lineas 
 
 Archivo	Qué guarda
