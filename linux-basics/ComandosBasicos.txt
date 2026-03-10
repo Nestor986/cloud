@@ -20,6 +20,24 @@ rm -r carpeta/ -> borra carpeta y contenido de la misma
 
 Busqueda
 find /ruta -name archivo.txt -> ejemplo: find /var/log -name "*.log"
+find / -name "file.txt"        # exact name
+find / -iname "file.txt"       # case-insensitive
+find . -name "*.log"           # wildcard
+find . -type f    # files only
+find . -type d    # directories only
+find . -type l    # symlinks only
+
+Buscar dentro de un archivo
+grep "error" file.txt           # buscar en un archivo
+grep "error" *.log              # buscar en múltiples archivos
+grep "error" file1.txt file2.txt
+
+grep -i "error" file.txt        # case-insensitive
+grep -r "error" /var/log/       # recursivo en directorio
+
+grep -A 3 "error" file.txt      # 3 líneas después (After)
+grep -B 3 "error" file.txt      # 3 líneas antes (Before)
+grep -C 3 "error" file.txt      # 3 líneas antes y después
 
 Permisos
 3 entidades: usuario(owner), grupo, otros
