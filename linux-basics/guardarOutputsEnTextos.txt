@@ -1,1 +1,7 @@
-
+Resumen visual
+Operador      Acción
+>             Sobreescribe el archivo
+>>            Agrega al final del archivo
+2>            Redirige errores
+2>&1          Errores al mismo lugar que el output
+> /dev/null   Descarta todo
