@@ -1,0 +1,50 @@
+Directorios esenciales del sistema
+/
+raízEl punto de partida de todo el árbol. No hay nada "fuera" de /
+
+/bin
+binariosComandos esenciales: ls, cp, mv, cat — disponibles para todos
+
+/sbin
+sistemaBinarios de administración: ifconfig, fdisk — solo root los necesita
+
+/etc
+configTodos los archivos de configuración del sistema: usuarios, red, servicios
+
+/lib
+libsLibrerías compartidas que usan los binarios de /bin y /sbin
+
+Datos y usuarios
+/home
+usuariosDirectorio personal de cada usuario: /home/juan, /home/maria
+
+/root
+rootHome del superusuario. Separado de /home por seguridad
+
+/tmp
+temporalArchivos temporales. Se borra al reiniciar. Cualquiera puede escribir aquí
+
+/var
+variableDatos que cambian: logs (/var/log), bases de datos, colas de correo
+
+Aplicaciones
+/usr
+programasSoftware instalado por el sistema: /usr/bin, /usr/lib, /usr/share
+
+/opt
+opcionalSoftware de terceros que no viene en paquetes del sistema
+
+/srv
+servicios← Aquí vivirá nuestro servidor web. Datos servidos por el sistema
+Sistema en tiempo real
+
+/proc
+virtualNo es disco real. El kernel expone info de procesos aquí: /proc/cpuinfo
+
+/dev
+dispositivosArchivos de dispositivos: discos (sda), terminales (tty), nulo (/dev/null)
+
+/mnt /media
+montajePuntos de montaje para discos externos, USB, particiones
+
+¿Por qué importa esto? Porque cuando instalas nginx, sus archivos de config van a /etc/nginx/, sus logs a /var/log/nginx/, y los archivos del sitio web a /srv/ o /var/www/. No es arbitrario — es el estándar que cualquier sysadmin espera encontrar.
