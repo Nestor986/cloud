@@ -87,4 +87,11 @@ sudo comando # ejecutar como root
 
 cat /etc/shells => ver shells permitidos
 
+# Ver tu umask actual
+umask
+# Probablemente verás: 0022
+
+# Qué significa: los archivos nuevos nacen con 666 - 022 = 644
+# Los directorios nuevos nacen con 777 - 022 = 755
+
 
