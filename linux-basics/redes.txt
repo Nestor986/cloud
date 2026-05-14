@@ -1,0 +1,120 @@
+# Ver todas las interfaces y sus IPs
+ip addr show
+# Forma corta:
+ip a
+# Ver solo una interfaz específica
+ip addr show eth0
+
+# Ver la tabla de rutas — cómo salen los paquetes del servidor
+ip route show
+# Forma corta:
+ip r
+# Ver solo una interfaz específica
+ip addr show eth0
+
+# Ver la tabla de rutas — cómo salen los paquetes del servidor
+ip route show
+# Forma corta:
+ip r
+
+
+ss (socket statistics) reemplaza a netstat. Es más rápido y más detallado. La pregunta más común que responde: ¿qué puertos están abiertos y qué proceso los usa?
+bash
+# El comando que más vas a usar en producción:
+# -t TCP  -u UDP  -l listening  -n numérico  -p proceso
+sudo ss -tulnp
+
+# Filtrar por puerto específico
+sudo ss -tulnp | grep :80
+sudo ss -tulnp | grep :443
+
+# Ver conexiones TCP activas (establecidas ahora mismo)
+ss -t state established
+
+# Ver cuántas conexiones hay por estado
+ss -s
+
+# Ver conexiones de un proceso específico
+sudo ss -tulnp | grep nginx
+
+# Ver conexiones hacia un IP remoto específico
+ss -t dst 192.168.1.100
+
+
+
+curl es tu navaja suiza para probar servicios HTTP desde la terminal:
+# Probar que nginx responde
+curl http://localhost
+
+# Ver solo los headers de respuesta (sin el body)
+# Útil para verificar códigos HTTP y headers de seguridad
+curl -I http://localhost
+
+# Ver TODO: headers del request, headers del response, y body
+# Fundamental para depurar problemas
+curl -v http://localhost
+
+# Probar y mostrar solo el código HTTP
+curl -s -o /dev/null -w "%{http_code}\n" http://localhost
+
+# Simular un request con JSON (probar APIs)
+curl -X POST http://localhost/api/datos \
+  -H "Content-Type: application/json" \
+  -d '{"usuario": "developer1", "accion": "test"}'
+
+# Seguir redirecciones (-L) — importante para HTTPS redirects
+curl -L http://localhost
+
+# Ver el tiempo de respuesta — útil para detectar lentitud
+curl -s -o /dev/null -w "DNS: %{time_namelookup}s | Conexión: %{time_connect}s | Total: %{time_total}s\n" http://localhost
+
+# Descargar un archivo
+curl -O https://example.com/archivo.tar.gz
+
+# Con progreso y siguiendo redirecciones
+curl -L --progress-bar -O https://example.com/script.sh
+
+
+# Trazar la ruta a un destino
+traceroute google.com
+# mtr es traceroute + ping en tiempo real — mucho más útil
+mtr google.com
+
+# mtr sin DNS (más rápido, muestra IPs directamente)
+mtr -n google.com
+
+# Generar reporte estático (útil para reportar un problema)
+mtr --report google.com
+
+Paso 7 — Escaneo de puertos con nmap
+
+⚠️ Usa nmap solo en servidores que te pertenecen o donde tienes autorización explícita. Escanear sin permiso puede tener consecuencias legales.
+
+
+
+# 1. ¿Qué IP tiene el servidor?
+ip addr show eth0
+
+# 2. ¿Cómo salen los paquetes? ¿Hay gateway configurado?
+ip route show
+
+# 3. ¿Qué servicios están escuchando y en qué puertos?
+sudo ss -tulnp
+
+# 4. ¿Nginx realmente está en el puerto 80?
+sudo ss -tulnp | grep :80
+
+# 5. ¿Responde correctamente?
+curl -I http://localhost
+
+# 6. ¿Cuánto tarda en responder?
+curl -s -o /dev/null -w "Total: %{time_total}s | HTTP: %{http_code}\n" http://localhost
+
+# 7. ¿Puedo llegar a internet desde el servidor?
+curl -s -o /dev/null -w "%{http_code}\n" https://www.google.com
+
+# 8. Si algo no llega, ¿dónde se corta?
+mtr --report google.com
+
+# 9. Resumen de puertos abiertos
+sudo nmap -F localhost
